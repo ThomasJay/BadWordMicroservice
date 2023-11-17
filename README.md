@@ -74,7 +74,7 @@ curl --location --request POST 'http://localhost:8123/api/v1/loadwords'
 ```
 ## Usage:
 
-To use the service, you typically send a POST request to the endpoint /api/c1/checksentence. This request should include a JSON body containing the sentence you want to check. You'll receive a response: if it's a 200-OK, you can review the 'count' and 'matches' in the response. A 'count' of zero (0) indicates that no offensive words were found. If the 'count' is more than zero, the 'matches' array will list the detected words.
+To use the service, you typically send a POST request to the endpoint /api/v1/checksentence. This request should include a JSON body containing the sentence you want to check. You'll receive a response: if it's a 200-OK, you can review the 'count' and 'matches' in the response. A 'count' of zero (0) indicates that no offensive words were found. If the 'count' is more than zero, the 'matches' array will list the detected words.
 
 ```
 curl --location 'http://localhost:8123/api/v1/checksentence' \
@@ -83,6 +83,32 @@ curl --location 'http://localhost:8123/api/v1/checksentence' \
 --data '{
     "sentence" : "bad word for me"
 }'
+```
+
+Success Response:
+
+```
+{
+    "status": "Success",
+    "messages": "No bad words found",
+    "count": 0,
+    "badWords": []
+}
+```
+
+Bad Response:
+
+```
+Note: response edited out bad words themself since it is public on GitHub and I did not want bad words on the README file
+{
+    "status": "Failed",
+    "messages": "Bad words found",
+    "count": 2,
+    "badWords": [
+        "***",
+        "***"
+    ]
+}
 ```
 
 ### Note: apiKey header is required.
